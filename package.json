@@ -1,0 +1,26 @@
+{
+  "name": "To_do_List_task",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "^4.17.1",
+    "bcrypt": "^5.0.1",
+    "cloudinary": "^1.26.2",
+    "datauri": "^3.0.0",
+    "dotenv": "^10.0.0",
+    "email-templates": "^8.0.7",
+    "express-fileupload": "^1.2.1",
+    "express-handlebars": "^5.3.2",
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.0",
+    "nodemailer": "^6.6.2",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "pug": "^3.0.2",
+    "sequelize": "^6.6.5",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
