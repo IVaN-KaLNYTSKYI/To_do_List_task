@@ -7,6 +7,7 @@ const {todoController} = require('../../controllers');
 router.get('/', todoController.getAllTodo);
 
 router.get('/:todoId',
+    authValid.checkAccessToken,
     todoMiddleware.idTodo,
     todoController.getTodoId);
 

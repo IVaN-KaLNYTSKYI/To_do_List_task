@@ -26,5 +26,11 @@ module.exports = {
         const secretWord = constants.ACTIVATE_TOKEN_SECRET;
 
         await verifyPromise(token, secretWord);
+    },
+
+    verifyTokenForgot: async (token) => {
+        const secretWord = constants.FORGOT_TOKEN;
+
+        await verifyPromise(token, secretWord);
     }
 };

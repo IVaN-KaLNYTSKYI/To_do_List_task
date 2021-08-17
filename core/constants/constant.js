@@ -11,4 +11,5 @@ module.exports = {
     EMAIL: process.env.EMAIL || 'ivankal@gmail.com',
     PASSWORD_EMAIL: process.env.PASSWORD_EMAIL || 'EWRWFEFD',
     ACTIVATE_TOKEN_SECRET: process.env.ACTIVATE_TOKEN_SECRET || 'efmefirfmemfregrgergrge',
+    FORGOT_TOKEN: process.env.FORGOT_TOKEN || 'EFDVSDVSDWDFdvdvdfdfSDF',
 };

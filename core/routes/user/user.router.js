@@ -17,7 +17,7 @@ router.get('/:userId',
     userController.getUserById);
 
 router.delete('/:userId',
-    /* authValid.checkAccessToken, */
+     authValid.checkAccessToken,
     isUserValid.idMiddleware,
     userController.removeUserById);
 
@@ -28,14 +28,23 @@ router.patch('/:userId',
     userController.updateUser);
 
 router.post('/:userId/avatar',
-    /*authValid.checkAccessToken,*/
+    authValid.checkAccessToken,
     fileMiddleware.checkFile,
     fileMiddleware.checkAvatar,
     isUserValid.idMiddleware,
     userController.changeAvatar);
 
-router.post('/:userId/addTodo',isUserValid.idMiddleware, userController.addTodo);
+router.post('/forgotPassword',
+    isUserValid.forgotToken,
+    userController.forgotPassword);
 
-router.post('/:userId/removeTodo',isUserValid.idMiddleware, userController.removeTodoUser);
+router.post('/changePassword',
+    authValid.checkAccessToken,
+    isUserValid.changePassword,
+    userController.changePassword);
+
+router.post('/:userId/addTodo', authValid.checkAccessToken, isUserValid.idMiddleware, todoMiddleware.createTodo, userController.addTodo);
+
+router.post('/:userId/removeTodo', authValid.checkAccessToken,isUserValid.idMiddleware,todoMiddleware.addTodo, userController.removeTodoUser);
 
 module.exports = router;

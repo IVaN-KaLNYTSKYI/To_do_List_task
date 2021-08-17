@@ -60,6 +60,10 @@ module.exports = {
         try {
             const {user} = req;
 
+            for (let value of user.todo){
+                await todoService.removeTodo(value);
+            }
+
             await fileHelpers.removeFileCloud(user.cloudinary_id);
 
             await userService.removeUser(req.params.userId);
@@ -140,17 +144,52 @@ module.exports = {
         try {
             const {body: {id}, params: {userId}, user} = req;
 
-            console.log(id)
-            const userFilter = user.todo.filter((value) => value !== id);
+            const userIndex = user.todo.indexOf(id);
 
-            console.log(userFilter)
-
-            await userService.updateUser(userId, {$set: {todo: userFilter}});
+            const userFilter = user.todo.filter(((value, index) => {
+                if(index!==userIndex){
+                    return value
+                }
+            }))
 
             await todoService.removeTodo(id);
 
+            await userService.updateUser(userId, {$set: {todo: userFilter}});
+
             res.json({
                 text:'Видалено 1 todo'
+            });
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    forgotPassword: async (req, res, next) => {
+        try {
+            const { user: { _id }, headers: { password } } = req;
+
+            const hashedPassword = await passwordHasher.hash(password);
+
+            await userService.updateUser({ _id }, { password: hashedPassword });
+
+            res.json({
+                text:"password update"
+            });
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    changePassword: async (req, res, next) => {
+        try {
+            const { user: { _id }, body: { newPassword } } = req;
+
+            const hashedPassword = await passwordHasher.hash(newPassword);
+
+            await userService.updateUser({ _id }, { password: hashedPassword });
+
+            res.json({
+                text:"change password"
             });
         } catch (e) {
             next(e);

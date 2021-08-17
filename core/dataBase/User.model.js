@@ -39,6 +39,10 @@ const userSchema = new Schema({
         required: true
     },
 
+    forgot_token: {
+        type: String
+    },
+
     cloudinary_id: {
         type: String,
     }
