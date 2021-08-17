@@ -1,5 +1,6 @@
 module.exports = {
     WELCOME: 'WELCOME',
     REMOVE: 'REMOVE',
-    UPDATE: 'UPDATE'
+    UPDATE: 'UPDATE',
+    FORGOT: 'FORGOT'
 };
